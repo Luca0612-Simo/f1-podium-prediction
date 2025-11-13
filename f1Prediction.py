@@ -14,7 +14,7 @@ races = races[races['year'] >= 2000]
 
 df = pd.merge(results, races, on='raceId')
 
-cols = ['circuitId', 'year', 'constructorId', 'positionOrder']
+cols = ['circuitId', 'year', 'constructorId', 'driverId','positionOrder']
 data = df[cols].copy()
 
 data['podium'] = data['positionOrder'].apply(lambda x: 1 if 1 <= x <= 3 else 0)
@@ -29,7 +29,7 @@ X = data.drop('podium', axis=1)
 y = data['podium']
 
 param_grid = {
-    'min_samples_split': [2, 10, 20, 50],
+    'min_samples_split': [20,50,100],
     'max_depth': [5,7,10,15, None]
 }
 
