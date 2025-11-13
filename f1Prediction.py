@@ -9,3 +9,12 @@ try:
 except FileNotFoundError:
     print("No se encuentran los archivos")
     exit()
+
+races = races[races['year'] >= 2000]
+
+df = pd.merge(results, races, on='raceId')
+
+cols = ['grid', 'circuitId', 'year', 'positionOrder']
+data = df[cols].copy()
+
+data['grid'] = data['grid'].replace(0, 24)
