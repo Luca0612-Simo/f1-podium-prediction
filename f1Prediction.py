@@ -14,10 +14,8 @@ races = races[races['year'] >= 2000]
 
 df = pd.merge(results, races, on='raceId')
 
-cols = ['grid', 'circuitId', 'year', 'positionOrder']
+cols = ['circuitId', 'year', 'positionOrder']
 data = df[cols].copy()
-
-data['grid'] = data['grid'].replace(0, 24)
 
 data['podium'] = data['positionOrder'].apply(lambda x: 1 if 1 <= x <= 3 else 0)
 
@@ -32,7 +30,7 @@ y = data['podium']
 
 param_grid = {
     'min_samples_split': [2, 10, 20, 50],
-    'max_depth': [3, 4, 5, 7, None]
+    'max_depth': [3, 4, 5, 7, 10, None]
 }
 
 grid = GridSearchCV(DecisionTreeClassifier(random_state=42), param_grid, cv=5, scoring='accuracy')
