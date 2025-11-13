@@ -18,3 +18,11 @@ cols = ['grid', 'circuitId', 'year', 'positionOrder']
 data = df[cols].copy()
 
 data['grid'] = data['grid'].replace(0, 24)
+
+data['podium'] = data['positionOrder'].apply(lambda x: 1 if 1 <= x <= 3 else 0)
+
+data = data.drop('positionOrder', axis=1)
+
+print("Así quedó el dataset listo para el modelo:")
+print(data.head())
+print(f"\nTotal de carreras a analizar: {len(data)}")
