@@ -26,3 +26,6 @@ data = data.drop('positionOrder', axis=1)
 print("Así quedó el dataset listo para el modelo:")
 print(data.head())
 print(f"\nTotal de carreras a analizar: {len(data)}")
+
+X = data.drop('podium', axis=1)
+y = data['podium']
